@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.96.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>aitrans_dtp windows 开发遇坑与总结 &middot; My New Hugo Site</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="https://simonkorl.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://simonkorl.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://simonkorl.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://simonkorl.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://simonkorl.github.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="https://simonkorl.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>aitrans_dtp windows 开发遇坑与总结</h1>
+  <time datetime=2022-04-06T00:00:00Z class="post-date">Wed, Apr 6, 2022</time>
+  <h2 id="aitrans-dtp-windows-开发遇坑与总结">aitrans_dtp windows 开发遇坑与总结</h2>
+<p>这次开发在 windows10 上进行，遇到了些许问题，在此记录一下整体上发生了什么事情，以及对应的解决方案。</p>
+<h3 id="主要问题-wsl2-上-docker-不能正确运行-tc-指令">主要问题：WSL2 上 docker 不能正确运行 tc 指令</h3>
+<p>主要问题基本上如题目所描述的那样</p>
+<h3 id="主要问题产生原因">主要问题产生原因</h3>
+<p>通过在网络上的搜索，发现这是一个在 WSL2 上无法运行 tc 相关的指令的问题，因为 WSL2 的内核默认对 tc 的支持不够。</p>
+<p>问题描述基本上与这个一致 <a href="https://docs.microsoft.com/en-us/answers/questions/48142/wsl2-qdisc-netem-support.html">https://docs.microsoft.com/en-us/answers/questions/48142/wsl2-qdisc-netem-support.html</a></p>
+<p>提出问题的解决方案是重新编译 WSL2 ，并且开启部分选项。</p>
+<p>推荐的解决方案如下： <a href="https://github.com/microsoft/WSL/issues/6065">https://github.com/microsoft/WSL/issues/6065</a></p>
+<h3 id="尝试一-使用-windows-docker-desktop">尝试一：使用 windows docker desktop</h3>
+<p>采用 windows 上的 docker ，最初和 WSL2 遇到了完全相同的问题。结果是：程序可以运行，tc 的部分指令可以正常运行但是 qdisc 相关的指令则不能正常运行。</p>
+<p>在设置中选择“使用 WSL2 作为后端”，将其取消，就可以解决掉 tc 指令运行错误的问题。不过这导致了另一个问题：</p>
+<p>两个容器间可以建立连接，但是 client 无法收到任何消息</p>
+<h3 id="尝试二-采用虚拟机">尝试二：采用虚拟机</h3>
+<p>配置好环境后发现，虚拟机和 docker 的运行结果一致，都是两者可以建立连接，但是无法收到消息。虽然猜测可能是 windows 自带的防火墙的问题，不过在关闭了防火墙后测试依然会遇到问题，所以这个问题最终没有解决。</p>
+<h3 id="尝试三-编译内核">尝试三：编译内核</h3>
+<p>编译 WSL2 内核并不困难，可以参考这篇专栏 <a href="https://www.bilibili.com/read/cv8619998/">https://www.bilibili.com/read/cv8619998/</a></p>
+<p>编译的时候需要开启一些选项，可以参考 <a href="https://github.com/microsoft/WSL/issues/6065">https://github.com/microsoft/WSL/issues/6065</a> 进行设置。</p>
+<p>在编译之后使用 WSL2 发现问题消失了，可以正常运行了。</p>
+<p>2021.4.27 建议使用 .wslconfig 来管理 wsl2 的 kernel 位置，详情可见 <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl-config">https://docs.microsoft.com/en-us/windows/wsl/wsl-config</a></p>
+<h3 id="问题总结">问题总结</h3>
+<p>WSL2 对于 tc 的支持并不够好，所以需要根据自己的需要重新编译内核。</p>
+<p>不过为什么 aitrans_dtp 仓库在我的电脑上不能用 client 收到东西，这件事还是不太清楚原因。因为有的参赛选手用的是 windows 开发，所以不知道他们是怎么做到的。只能说如果遇到了这种问题最好交流或记录一下。</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

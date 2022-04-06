@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://simonkorl.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>计算机 on My New Hugo Site</title>
+    <link>https://simonkorl.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+    <description>Recent content in 计算机 on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://simonkorl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://simonkorl.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>aitrans_dtp windows 开发遇坑与总结</title>
       <link>https://simonkorl.github.io/posts/aitrans_dtp_windows/</link>
@@ -27,15 +27,6 @@
 编译的时候需要开启一些选项，可以参考 https://github.com/microsoft/WSL/issues/6065 进行设置。
 在编译之后使用 WSL2 发现问题消失了，可以正常运行了。
 2021.4.27 建议使用 .</description>
-    </item>
-    
-    <item>
-      <title>Helloworld</title>
-      <link>https://simonkorl.github.io/posts/helloworld/</link>
-      <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://simonkorl.github.io/posts/helloworld/</guid>
-      <description>This is a hello world from hugo !</description>
     </item>
     
   </channel>

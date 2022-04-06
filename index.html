@@ -53,6 +53,30 @@
     <div class="posts">
 <article class="post">
   <h1 class="post-title">
+    <a href="https://simonkorl.github.io/posts/aitrans_dtp_windows/">aitrans_dtp windows 开发遇坑与总结</a>
+  </h1>
+  <time datetime="2022-04-06T00:00:00Z" class="post-date">Wed, Apr 6, 2022</time>
+  aitrans_dtp windows 开发遇坑与总结 这次开发在 windows10 上进行，遇到了些许问题，在此记录一下整体上发生了什么事情，以及对应的解决方案。
+主要问题：WSL2 上 docker 不能正确运行 tc 指令 主要问题基本上如题目所描述的那样
+主要问题产生原因 通过在网络上的搜索，发现这是一个在 WSL2 上无法运行 tc 相关的指令的问题，因为 WSL2 的内核默认对 tc 的支持不够。
+问题描述基本上与这个一致 https://docs.microsoft.com/en-us/answers/questions/48142/wsl2-qdisc-netem-support.html
+提出问题的解决方案是重新编译 WSL2 ，并且开启部分选项。
+推荐的解决方案如下： https://github.com/microsoft/WSL/issues/6065
+尝试一：使用 windows docker desktop 采用 windows 上的 docker ，最初和 WSL2 遇到了完全相同的问题。结果是：程序可以运行，tc 的部分指令可以正常运行但是 qdisc 相关的指令则不能正常运行。
+在设置中选择“使用 WSL2 作为后端”，将其取消，就可以解决掉 tc 指令运行错误的问题。不过这导致了另一个问题：
+两个容器间可以建立连接，但是 client 无法收到任何消息
+尝试二：采用虚拟机 配置好环境后发现，虚拟机和 docker 的运行结果一致，都是两者可以建立连接，但是无法收到消息。虽然猜测可能是 windows 自带的防火墙的问题，不过在关闭了防火墙后测试依然会遇到问题，所以这个问题最终没有解决。
+尝试三：编译内核 编译 WSL2 内核并不困难，可以参考这篇专栏 https://www.bilibili.com/read/cv8619998/
+编译的时候需要开启一些选项，可以参考 https://github.com/microsoft/WSL/issues/6065 进行设置。
+在编译之后使用 WSL2 发现问题消失了，可以正常运行了。
+2021.4.27 建议使用 .
+  
+  <div class="read-more-link">
+    <a href="/posts/aitrans_dtp_windows/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
     <a href="https://simonkorl.github.io/posts/helloworld/">Helloworld</a>
   </h1>
   <time datetime="2022-04-06T00:00:00Z" class="post-date">Wed, Apr 6, 2022</time>
