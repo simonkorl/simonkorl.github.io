@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin sh
 
 # 获取当前日期与时间
 current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
