@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My New Hugo Site</title>
-    <link>https://simonkorl.github.io/posts/</link>
+    <link>http://example.org/posts/</link>
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://simonkorl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>aitrans_dtp windows 开发遇坑与总结</title>
-      <link>https://simonkorl.github.io/posts/aitrans_dtp_windows/</link>
+      <link>http://example.org/posts/aitrans_dtp_windows/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://simonkorl.github.io/posts/aitrans_dtp_windows/</guid>
+      <guid>http://example.org/posts/aitrans_dtp_windows/</guid>
       <description>aitrans_dtp windows 开发遇坑与总结 这次开发在 windows10 上进行，遇到了些许问题，在此记录一下整体上发生了什么事情，以及对应的解决方案。
 主要问题：WSL2 上 docker 不能正确运行 tc 指令 主要问题基本上如题目所描述的那样
 主要问题产生原因 通过在网络上的搜索，发现这是一个在 WSL2 上无法运行 tc 相关的指令的问题，因为 WSL2 的内核默认对 tc 的支持不够。
@@ -31,10 +31,10 @@
     
     <item>
       <title>Helloworld</title>
-      <link>https://simonkorl.github.io/posts/helloworld/</link>
+      <link>http://example.org/posts/helloworld/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://simonkorl.github.io/posts/helloworld/</guid>
+      <guid>http://example.org/posts/helloworld/</guid>
       <description>This is a hello world from hugo !</description>
     </item>
     

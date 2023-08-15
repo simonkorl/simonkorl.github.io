@@ -1,0 +1,12 @@
+#+TITLE: Hello World!
+#+DATE: 2022-04-06
+#+HUGO_BASE_DIR: ~/org/blog
+#+HUGO_AUTO_SET_LASTMOD: t
+#+HUGO_TAGS:
+#+HUGO_CATEGORIES:
+#+HUGO_DRAFT: false
+# #+HUGO_MENU: :menu "main" :parent "docs" :weight 3
+#+options: author:nil
+#+HUGO_CUSTOM_FRONT_MATTER: :katex true
+
+This is a hello world from hugo !

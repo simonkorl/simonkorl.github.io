@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://simonkorl.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>NOTE on My New Hugo Site</title>
+    <link>http://example.org/tags/note/</link>
+    <description>Recent content in NOTE on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://simonkorl.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/tags/note/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>aitrans_dtp windows 开发遇坑与总结</title>
-      <link>https://simonkorl.github.io/posts/aitrans_dtp_windows/</link>
+      <link>http://example.org/posts/aitrans_dtp_windows/</link>
       <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://simonkorl.github.io/posts/aitrans_dtp_windows/</guid>
+      <guid>http://example.org/posts/aitrans_dtp_windows/</guid>
       <description>aitrans_dtp windows 开发遇坑与总结 这次开发在 windows10 上进行，遇到了些许问题，在此记录一下整体上发生了什么事情，以及对应的解决方案。
 主要问题：WSL2 上 docker 不能正确运行 tc 指令 主要问题基本上如题目所描述的那样
 主要问题产生原因 通过在网络上的搜索，发现这是一个在 WSL2 上无法运行 tc 相关的指令的问题，因为 WSL2 的内核默认对 tc 的支持不够。
@@ -27,15 +27,6 @@
 编译的时候需要开启一些选项，可以参考 https://github.com/microsoft/WSL/issues/6065 进行设置。
 在编译之后使用 WSL2 发现问题消失了，可以正常运行了。
 2021.4.27 建议使用 .</description>
-    </item>
-    
-    <item>
-      <title>Helloworld</title>
-      <link>https://simonkorl.github.io/posts/helloworld/</link>
-      <pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://simonkorl.github.io/posts/helloworld/</guid>
-      <description>This is a hello world from hugo !</description>
     </item>
     
   </channel>

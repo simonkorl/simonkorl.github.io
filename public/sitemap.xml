@@ -2,28 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://simonkorl.github.io/posts/aitrans_dtp_windows/</loc>
+    <loc>http://example.org/posts/aitrans_dtp_windows/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/categories/</loc>
+    <loc>http://example.org/categories/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/posts/helloworld/</loc>
+    <loc>http://example.org/posts/helloworld/</loc>
     <lastmod>2022-04-06T12:36:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/</loc>
+    <loc>http://example.org/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/tags/note/</loc>
+    <loc>http://example.org/tags/note/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/posts/</loc>
+    <loc>http://example.org/posts/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/tags/</loc>
+    <loc>http://example.org/tags/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url><url>
-    <loc>https://simonkorl.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <loc>http://example.org/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
     <lastmod>2022-04-06T13:18:00+08:00</lastmod>
   </url>
 </urlset>
