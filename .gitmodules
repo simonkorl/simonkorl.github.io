@@ -1,0 +1,7 @@
+[submodule "jane"]
+	path = themes/jane
+	url = git@github.com:xianmin/hugo-theme-jane.git
+
+[submodule "hyde"]
+	path = themes/hyde
+	url = git@github.com:spf13/hyde.git
