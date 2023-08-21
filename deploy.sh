@@ -1,6 +1,6 @@
 #!/usr/bin sh
 
-# »ñÈ¡µ±Ç°ÈÕÆÚÓëÊ±¼ä
+# è·å–å½“å‰æ—¥æœŸä¸æ—¶é—´
 current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
 
 git add .
