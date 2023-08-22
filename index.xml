@@ -6,7 +6,175 @@
 &lt;li>&lt;a href="https://github.com/spf13/jWalterWeatherman">J Walter Weatherman&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/spf13/cast">Cast&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>WIP: 刷题时永远记不住的东西</title><link>http://localhost:1313/post/leetcode_notes/</link><pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/leetcode_notes/</guid><description>&lt;blockquote>
+&lt;p>Learn more and contribute on &lt;a href="https://github.com/gohugoio">GitHub&lt;/a>.&lt;/p></description></item><item><title>WIP: C++ 知识深坑</title><link>http://localhost:1313/post/c++%E9%9D%A2%E8%AF%95%E6%B7%B1%E5%9D%91/</link><pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/c++%E9%9D%A2%E8%AF%95%E6%B7%B1%E5%9D%91/</guid><description>&lt;blockquote>
+&lt;p>永远不要在面试官前表示自己精通 C++ ，你会死的很惨的&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>如果你在自己的简历上敢写自己的主要编程语言是 C++ 的话，那么恭喜你，你已经走上了最困难的一条路。如果你不是计算机系科班出身，或者对所有的计算机知识至少留有印象的话，那么你可能会被下到汇编、操作系统，上到编程算法被问个体无完肤。不过另一方面，如果你真的可以打好 C++ 的基础，那么计算机的其他部分你肯定可以触类旁通，畅行于计算机的世界而毫无困难。&lt;/p>
+&lt;p>这个文章希望记录我遇到的和我知道的在面试中，C++ 可能会被面到的问题。其中包括 C++ 的基础，汇编、操统、计算机组成等计算机核心知识，还会包括一些稀奇古怪的题目。希望能够帮到一些同样主要编程语言是 C/C++ ，并且希望能够更加深入了解计算机的人们。&lt;/p>
+&lt;h2 id="c-语言">C 语言&lt;/h2>
+&lt;h3 id="基本数据类型的大小">基本数据类型的大小&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;stdio.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;stdbool.h&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(char) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">char&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(unsigned char) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">char&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(short) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">short&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(bool) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">bool&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(int) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(unsigned int) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(long) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(unsigned long) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(long long) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(unsigned long long) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">unsigned&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span> &lt;span style="color:#66d9ef">long&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(void *) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#f92672">*&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(&amp;#39;hello world&amp;#39;) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;hello world&amp;#34;&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(float) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">float&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;sizeof(double) = %d&lt;/span>&lt;span style="color:#ae81ff">\n&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>, &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#66d9ef">double&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(char) = 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(unsigned char) = 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(short) = 2
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(bool) = 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(int) = 4
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(unsigned int) = 4
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(long) = 8 // 64 位 unix 为 8B, x86-64 为 4B
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(unsigned long) = 8 // 64 位 unix 为 8B, x86-64 为 4B
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(long long) = 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(unsigned long long) = 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(void *) = 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(&amp;#39;hello world&amp;#39;) = 12
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(float) = 4
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> sizeof(double) = 8
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面的内容都是最为基础的知识，或者说它们大多没有什么需要注意的地方，基本上背诵记忆即可。&lt;/p>
+&lt;p>不过仔细想想，有一些多少可以讲解一点的东西，我们来看一下：&lt;/p>
+&lt;h4 id="基础的大小单位">基础的大小单位&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>比特 bit
+0，1 两个值，是数据处理和储存的最小单位，代表两个状态。一般在电脑中利用电平表示。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>字节（Byte）
+一个字节 8 bit。（别问！字节的大小是定义的，现在就是 8 位，就当没有什么理由就可以了。）&lt;/p>
+&lt;p>最经典的一个字节长的东西就是 char，对应一个 ascii 码。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>字 WORD
+定义为两个字节，8B, 16 bits&lt;/p>
+&lt;p>经典的一个字大小的东西是 short&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>双字 DWORD&lt;/p>
+&lt;p>如同字面意思，两个字的长度，32 bits&lt;/p>
+&lt;p>int 的大小，实在没有什么好说的了。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>四字 QWORD&lt;/p>
+&lt;p>字面意思 4 个字长度，64 bits&lt;/p>
+&lt;p>典型的 64 位大小为 c++11 后的 long long 类型长度以及 64 位机的指针大小（毕竟地址线宽就是 64 位，指针当然也得是 64 位）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>字长&lt;/p>
+&lt;p>字长和字节虽然有同样的一个字，不过这两个概念没有半毛钱关系！&lt;/p>
+&lt;p>你可以认为字长是计算机的传输线宽，计算机的各种组成单元在一次存取、加工、传送时可以使用的数据长度就是字长。&lt;/p>
+&lt;p>我们常说的 32位机、64位机说的就是字长&lt;/p>
+&lt;p>我们以 64 位机为例子，字长为 8B&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="指针的大小">指针的大小&lt;/h4>
+&lt;p>指针的大小永远和计算机的字长一样大，所以如果是 32 位的电脑就是 4 字节，64 位就是 8 字节&lt;/p>
+&lt;h4 id="字符串的大小">字符串的大小&lt;/h4>
+&lt;p>&lt;code>&amp;quot;hello world&amp;quot;&lt;/code> 一共 11 个字母，但是长度为 12B ，因为字符串的末尾会被添加 \0 作为终止符号。&lt;/p>
+&lt;h3 id="struct-的内存结构">struct 的内存结构&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="c-plus-plus-语言">C++ 语言&lt;/h2>
+&lt;h3 id="类的成员函数">类的成员函数&lt;/h3>
+&lt;p>&lt;a href="https://blog.csdn.net/fuzhongmin05/article/details/59112081">https://blog.csdn.net/fuzhongmin05/article/details/59112081&lt;/a>&lt;/p>
+&lt;p>请回答下面的问题：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">using&lt;/span> &lt;span style="color:#66d9ef">namespace&lt;/span> std;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">D&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">char&lt;/span> i;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">func1&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;func1&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">virtual&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">func2&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;func2&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> D&lt;span style="color:#f92672">*&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> D(), &lt;span style="color:#f92672">*&lt;/span>b &lt;span style="color:#f92672">=&lt;/span> NULL;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> a&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func1(); &lt;span style="color:#75715e">// func1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> a&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func2(); &lt;span style="color:#75715e">// func2
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">sizeof&lt;/span>(a) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl; &lt;span style="color:#75715e">// 8 (64 bit)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#66d9ef">sizeof&lt;/span>(&lt;span style="color:#f92672">*&lt;/span>a) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl; &lt;span style="color:#75715e">// 16 (虚指针 + 对齐后的 char)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">delete&lt;/span> a;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> b&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func1(); &lt;span style="color:#75715e">// func1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> b&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func2(); &lt;span style="color:#75715e">// segmentfault
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="多态">多态&lt;/h3>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/529726280">https://zhuanlan.zhihu.com/p/529726280&lt;/a>&lt;/p>
+&lt;p>请回答下面的问题：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">using&lt;/span> &lt;span style="color:#66d9ef">namespace&lt;/span> std;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">A&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">virtual&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;funcA&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">nfunc&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;nfuncA&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">B&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">A&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;funcB&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">nfunc&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;nfuncB&amp;#34;&lt;/span> &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> endl;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">print_func1&lt;/span>(A&lt;span style="color:#f92672">*&lt;/span> p) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> p&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> p&lt;span style="color:#f92672">-&amp;gt;&lt;/span>nfunc();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">print_func2&lt;/span>(A&lt;span style="color:#f92672">&amp;amp;&lt;/span> p) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> p.func();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> p.nfunc();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> B&lt;span style="color:#f92672">*&lt;/span> b &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> B();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> A&lt;span style="color:#f92672">*&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> b;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> a&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func(); &lt;span style="color:#75715e">// funcB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> a&lt;span style="color:#f92672">-&amp;gt;&lt;/span>nfunc(); &lt;span style="color:#75715e">// nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> b&lt;span style="color:#f92672">-&amp;gt;&lt;/span>func(); &lt;span style="color:#75715e">// funcB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> b&lt;span style="color:#f92672">-&amp;gt;&lt;/span>nfunc(); &lt;span style="color:#75715e">// nfuncB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> (&lt;span style="color:#f92672">*&lt;/span>a).func(); &lt;span style="color:#75715e">// funcB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> (&lt;span style="color:#f92672">*&lt;/span>a).nfunc(); &lt;span style="color:#75715e">// nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> (&lt;span style="color:#f92672">*&lt;/span>b).func(); &lt;span style="color:#75715e">// funcB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> (&lt;span style="color:#f92672">*&lt;/span>b).nfunc(); &lt;span style="color:#75715e">// nfuncB
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> print_func1(a); &lt;span style="color:#75715e">// funcB, nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> print_func1(b); &lt;span style="color:#75715e">// funcB, nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> print_func2(&lt;span style="color:#f92672">*&lt;/span>a); &lt;span style="color:#75715e">// funcB, nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> print_func2(&lt;span style="color:#f92672">*&lt;/span>b); &lt;span style="color:#75715e">// funcB, nfuncA
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">delete&lt;/span> b;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="计算机网络">计算机网络&lt;/h2>
+&lt;h2 id="操作系统">操作系统&lt;/h2>
+&lt;h3 id="物理内存和虚拟内存">物理内存和虚拟内存&lt;/h3>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/529726280">https://zhuanlan.zhihu.com/p/529726280&lt;/a>&lt;/p></description></item><item><title>WIP: 刷题时永远记不住的东西</title><link>http://localhost:1313/post/leetcode_notes/</link><pubDate>Tue, 15 Aug 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/leetcode_notes/</guid><description>&lt;blockquote>
 &lt;p>刷题时不可能刷题的，这辈子都不可能刷题的。&lt;/p>
 &lt;p>学校里个个都是人才，说话也好听，我超喜欢在里面的。&lt;/p>
 &lt;/blockquote>
