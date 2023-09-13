@@ -524,7 +524,62 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="链表">链表&lt;/h2>
-&lt;h3 id="链表是否有环">链表是否有环&lt;/h3>
+&lt;h3 id="链表的指针操作">链表的指针操作&lt;/h3>
+&lt;p>链表题目都不会给双向链表，我们只能使用单向链表。单向链表最大的问题就是它只能往一个方向遍历，这使得我们无法直接随机访问链表中的元素。有的时候，链表还会对访问若干相邻的元素产生障碍，尤其是需要处理边界条件的时候，可能会让人非常抓狂。在面试的时候去 debug segment fault 真的非常折磨。&lt;/p>
+&lt;h4 id="反转链表">反转链表&lt;/h4>
+&lt;p>&lt;a href="https://leetcode.cn/problems/UHnkqh/solutions/1022382/fan-zhuan-lian-biao-by-leetcode-solution-34oi/">https://leetcode.cn/problems/UHnkqh/solutions/1022382/fan-zhuan-lian-biao-by-leetcode-solution-34oi/&lt;/a>&lt;/p>
+&lt;p>必须要会的小技巧，最大的问题是处理边界条件。&lt;/p>
+&lt;p>提问：为了反转链表，你需要至少新定义多少个新的指针？
+答案是三个，你至少需要前一个节点（作为当前节点的 next），当前节点和下一个节点（否则会被替代掉）&lt;/p>
+&lt;p>可以这样记忆这个算法：3-4-5（三个临时变量，while 里面四行，返回 prev）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">using&lt;/span> &lt;span style="color:#66d9ef">namespace&lt;/span> std;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">ListNode&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> val;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">reverseList&lt;/span>(ListNode &lt;span style="color:#f92672">*&lt;/span>head) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> prev &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>; &lt;span style="color:#75715e">// 注意第一个指针需要是 NULL
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> ListNode&lt;span style="color:#f92672">*&lt;/span> curr &lt;span style="color:#f92672">=&lt;/span> head;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> next &lt;span style="color:#f92672">=&lt;/span> head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(curr) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> next &lt;span style="color:#f92672">=&lt;/span> curr&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next; &lt;span style="color:#75715e">// 临时储存 curr-&amp;gt;next
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> curr&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> prev;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> prev &lt;span style="color:#f92672">=&lt;/span> curr;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> curr &lt;span style="color:#f92672">=&lt;/span> next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> prev;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>递归版本也是一道不错的思维题目，我们在下面写一下&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>ListNode&lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">reverseListRecur&lt;/span>(ListNode &lt;span style="color:#f92672">*&lt;/span>head) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(head &lt;span style="color:#f92672">==&lt;/span> NULL &lt;span style="color:#f92672">||&lt;/span> head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next &lt;span style="color:#f92672">==&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> head;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> newHead &lt;span style="color:#f92672">=&lt;/span> reverseListRecur(head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> 考虑最前面的三个节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> head newHead
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> 1 -&amp;gt; 2 -&amp;gt; 3 &amp;lt;-4567...n
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> ^ |
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> | |
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> +----+
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> head newHead
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> 1 -&amp;gt; 2 &amp;lt;- 3 &amp;lt;-4567...n
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> head; &lt;span style="color:#75715e">// 让已经反转过的链表末尾变成自己
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">nullptr&lt;/span>; &lt;span style="color:#75715e">// 如果自己是第一个元素，那么就不会有新的节点修改这个值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> newHead; &lt;span style="color:#75715e">// newHead 一定是原来链表的末尾
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="奇偶链表">&lt;!-- raw HTML omitted -->TODO&lt;!-- raw HTML omitted --> 奇偶链表&lt;/h4>
+&lt;h4 id="合并链表">&lt;!-- raw HTML omitted -->TODO&lt;!-- raw HTML omitted --> 合并链表&lt;/h4>
+&lt;h3 id="快慢指针">快慢指针&lt;/h3>
+&lt;p>没有什么是比快慢指针更加朴素无华，但是又非常华丽的算法了。&lt;/p>
+&lt;p>链表天生的 O(n) 遍历时间确实让人头皮发麻，但是使用了快慢指针后，我们可以方便地得知一个链表 1/s 的位置。通常用于得知链表一半的位置，也可以用来处理一些特殊的情况，例如环形链表&lt;/p>
+&lt;h4 id="链表是否有环">链表是否有环&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 判断链表有环
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 有一个非常不错的双指针方法，在 leetcode 的同样题目下有关于链表比较详细的解析
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
@@ -593,6 +648,50 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> std&lt;span style="color:#f92672">::&lt;/span>cout &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> has_loop(start) &lt;span style="color:#f92672">&amp;lt;&amp;lt;&lt;/span> std&lt;span style="color:#f92672">::&lt;/span>endl;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="链表最大孪生和">链表最大孪生和&lt;/h4>
+&lt;p>&lt;a href="https://leetcode.cn/problems/maximum-twin-sum-of-a-linked-list/solutions/?envType=study-plan-v2&amp;amp;envId=leetcode-75">https://leetcode.cn/problems/maximum-twin-sum-of-a-linked-list/solutions/?envType=study-plan-v2&amp;amp;envId=leetcode-75&lt;/a>&lt;/p>
+&lt;p>简单描述题目就是把链表首尾之和求出来，然后删除首尾元素，继续求首尾元素的和，然后找最大值。&lt;/p>
+&lt;p>虽然用栈是一个非常朴素无华且效率高的方法，但是要是 O(1) 的空间要求，应该怎么办呢？&lt;/p>
+&lt;p>思路还是很朴素无华，当然就是快慢指针后反转链表了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;iostream&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;vector&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">using&lt;/span> &lt;span style="color:#66d9ef">namespace&lt;/span> std;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">ListNode&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> val &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> next &lt;span style="color:#f92672">=&lt;/span> NULL;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode(&lt;span style="color:#66d9ef">int&lt;/span> v &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) {&lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val &lt;span style="color:#f92672">=&lt;/span> v;}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">print&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> printf(&lt;span style="color:#e6db74">&amp;#34;(%d)[%p]-&amp;gt;[%p]-&amp;gt;&amp;#34;&lt;/span>, val, &lt;span style="color:#66d9ef">this&lt;/span>, next);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">pairSum&lt;/span>(ListNode&lt;span style="color:#f92672">*&lt;/span> head) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode &lt;span style="color:#f92672">*&lt;/span>slow &lt;span style="color:#f92672">=&lt;/span> head, &lt;span style="color:#f92672">*&lt;/span>fast &lt;span style="color:#f92672">=&lt;/span> head&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> slow &lt;span style="color:#f92672">=&lt;/span> slow&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fast &lt;span style="color:#f92672">=&lt;/span> fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 此时 slow-&amp;gt;next 就是要翻转链表的起点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 我们复用这两个变量来翻转链表
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> slow &lt;span style="color:#f92672">=&lt;/span> NULL;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fast &lt;span style="color:#f92672">=&lt;/span> slow&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ListNode&lt;span style="color:#f92672">*&lt;/span> tmp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(fast) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> tmp &lt;span style="color:#f92672">=&lt;/span> fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next &lt;span style="color:#f92672">=&lt;/span> slow;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> slow &lt;span style="color:#f92672">=&lt;/span> fast;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fast &lt;span style="color:#f92672">=&lt;/span> tmp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 此时 slow 就是新的 head
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> fast &lt;span style="color:#f92672">=&lt;/span> slow; &lt;span style="color:#75715e">// 从后往前遍历
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> slow &lt;span style="color:#f92672">=&lt;/span> head; &lt;span style="color:#75715e">// 从前往后遍历
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> res &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(slow &lt;span style="color:#f92672">!=&lt;/span> NULL &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> fast &lt;span style="color:#f92672">!=&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> res &lt;span style="color:#f92672">=&lt;/span> max(res, slow&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val &lt;span style="color:#f92672">+&lt;/span> fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> slow &lt;span style="color:#f92672">=&lt;/span> slow&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> fast &lt;span style="color:#f92672">=&lt;/span> fast&lt;span style="color:#f92672">-&amp;gt;&lt;/span>next;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> res;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="堆">堆&lt;/h2>
 &lt;h3 id="堆的定义">堆的定义&lt;/h3>
