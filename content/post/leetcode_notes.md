@@ -1,7 +1,7 @@
 +++
 title = "WIP: 刷题时永远记不住的东西"
 date = 2023-08-15
-lastmod = 2023-08-21T21:02:00+08:00
+lastmod = 2023-09-13T21:31:00+08:00
 tags = ["算法", [",", "数据结构"], [",", "刷题"]]
 draft = false
 katex = true
@@ -492,7 +492,86 @@ public:
 ## 链表 {#链表}
 
 
-### 链表是否有环 {#链表是否有环}
+### 链表的指针操作 {#链表的指针操作}
+
+链表题目都不会给双向链表，我们只能使用单向链表。单向链表最大的问题就是它只能往一个方向遍历，这使得我们无法直接随机访问链表中的元素。有的时候，链表还会对访问若干相邻的元素产生障碍，尤其是需要处理边界条件的时候，可能会让人非常抓狂。在面试的时候去 debug segment fault 真的非常折磨。
+
+
+#### 反转链表 {#反转链表}
+
+<https://leetcode.cn/problems/UHnkqh/solutions/1022382/fan-zhuan-lian-biao-by-leetcode-solution-34oi/>
+
+必须要会的小技巧，最大的问题是处理边界条件。
+
+提问：为了反转链表，你需要至少新定义多少个新的指针？
+答案是三个，你至少需要前一个节点（作为当前节点的 next），当前节点和下一个节点（否则会被替代掉）
+
+可以这样记忆这个算法：3-4-5（三个临时变量，while 里面四行，返回 prev）
+
+```cpp
+#include <iostream>
+using namespace std;
+struct ListNode {
+    int val;
+    ListNode* next;
+};
+void reverseList(ListNode *head) {
+    ListNode* prev = nullptr; // 注意第一个指针需要是 NULL
+    ListNode* curr = head;
+    ListNode* next = head->next;
+    while(curr) {
+        next = curr->next; // 临时储存 curr->next
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+int main() {
+    return 0;
+}
+```
+
+递归版本也是一道不错的思维题目，我们在下面写一下
+
+```cpp
+ListNode* reverseListRecur(ListNode *head) {
+    if(head == NULL || head->next == NULL) {
+        return head;
+    }
+    ListNode* newHead = reverseListRecur(head->next);
+    /*
+     考虑最前面的三个节点
+        head           newHead
+     1 -> 2 -> 3 <-4567...n
+          ^    |
+          |    |
+          +----+
+
+        head           newHead
+     1 -> 2 <- 3 <-4567...n
+    */
+    head->next->next = head; // 让已经反转过的链表末尾变成自己
+    head->next = nullptr; // 如果自己是第一个元素，那么就不会有新的节点修改这个值
+    return newHead; // newHead 一定是原来链表的末尾
+}
+```
+
+
+#### <span class="org-todo todo TODO">TODO</span> 奇偶链表 {#奇偶链表}
+
+
+#### <span class="org-todo todo TODO">TODO</span> 合并链表 {#合并链表}
+
+
+### 快慢指针 {#快慢指针}
+
+没有什么是比快慢指针更加朴素无华，但是又非常华丽的算法了。
+
+链表天生的 O(n) 遍历时间确实让人头皮发麻，但是使用了快慢指针后，我们可以方便地得知一个链表 1/s 的位置。通常用于得知链表一半的位置，也可以用来处理一些特殊的情况，例如环形链表
+
+
+#### 链表是否有环 {#链表是否有环}
 
 ```cpp
 // 判断链表有环
@@ -563,6 +642,61 @@ int main() {
 
     std::cout << has_loop(start) << std::endl;
     return 0;
+}
+```
+
+
+#### 链表最大孪生和 {#链表最大孪生和}
+
+
+
+<https://leetcode.cn/problems/maximum-twin-sum-of-a-linked-list/solutions/?envType=study-plan-v2&envId=leetcode-75>
+
+简单描述题目就是把链表首尾之和求出来，然后删除首尾元素，继续求首尾元素的和，然后找最大值。
+
+虽然用栈是一个非常朴素无华且效率高的方法，但是要是 O(1) 的空间要求，应该怎么办呢？
+
+思路还是很朴素无华，当然就是快慢指针后反转链表了。
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+struct ListNode {
+    int val = 0;
+    ListNode* next = NULL;
+    ListNode(int v = 0) {this->val = v;}
+    void print() {
+        printf("(%d)[%p]->[%p]->", val, this, next);
+    }
+};
+bool pairSum(ListNode* head) {
+    ListNode *slow = head, *fast = head->next;
+    while(fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    // 此时 slow->next 就是要翻转链表的起点
+    // 我们复用这两个变量来翻转链表
+    slow = NULL;
+    fast = slow->next;
+    ListNode* tmp;
+    while(fast) {
+        tmp = fast->next;
+        fast->next = slow;
+        slow = fast;
+        fast = tmp;
+    }
+    // 此时 slow 就是新的 head
+    fast = slow; // 从后往前遍历
+    slow = head; // 从前往后遍历
+    int res = 0;
+    while(slow != NULL && fast != NULL) {
+        res = max(res, slow->val + fast->val);
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return res;
 }
 ```
 
