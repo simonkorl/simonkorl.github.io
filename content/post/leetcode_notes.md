@@ -1,7 +1,7 @@
 +++
 title = "WIP: 刷题时永远记不住的东西"
 date = 2023-08-15
-lastmod = 2023-09-13T21:31:00+08:00
+lastmod = 2023-09-14T22:28:00+08:00
 tags = ["算法", [",", "数据结构"], [",", "刷题"]]
 draft = false
 katex = true
@@ -14,15 +14,52 @@ katex = true
 
 ## 数组 {#数组}
 
+> 数组，为什么是神？
+> 在回答这个问题之前，我们必须要解释清楚，神和其他的数据结构都有什么区别。
+> 首先是犯下傲慢之罪的栈和队列。只是在数组的上增加了一些小创新，就妄图宣称自己是全新的数据结构。数组念在其本是同根生的份上，没有多加追究。允许它们发扬光大是神最大的慈悲。
+> 其次是犯下懒惰之罪的队列。除了进出 O(1) 开销竟然所有操作都是 O(n) 代价。如同只会吃喝拉撒却一点活不干废物一样。这样的数据结构终将受到神的惩罚。
+> 再次是犯下嫉妒之罪的二叉树和堆。明明是平衡二叉树（AST）的退化，但是因为嫉妒数组的空间开销，偷去了数组的格式，储存着树状的数据，美名其曰新的数据结构。这样的数据结构必将被神绳之以法。
+> 最后是犯下愤怒之罪的哈希表。为了追求极致的快速访问失去了理性，背叛了数组的简单优雅，不仅试图往一个下标里塞进多个元素，连键值和下标都已经不对应了。这种数据结构已经被神开除了数组籍，被隔壁的 map 收留，成为了 unordered_map。
+> 神是宽容的，也是慈悲的。
+> 纵使树的各种不同分支不断发展壮大，纵使各类新型的编程语言支持的基本容器都增加了键值对，神也不纠不缠。
+> 神是万物的起源，是众生的归宿。
+> 组门！
+
 
 ### 求数组中最大的前两个数以及其对应的下标 {#求数组中最大的前两个数以及其对应的下标}
 
 只需要 4 个变量即可做到
 
+```cpp
+vector<int> max2(vector<int>& nums) {
+    int max_1 = 0, max_1_idx = -1;
+    int max_2 = 0, max_2_idx = -1;
+    for(int i = 0;i < nums.size(); ++i) {
+        if(nums[i] > max_1) {
+            max_2 = max_1;
+            max_2_idx = max_1_idx;
+            max_1 = nums[i];
+            max_1_idx = i;
+        } else if(nums[i] > max_2) {
+            max_2 = nums[i];
+            max_2_idx = i;
+        } else {
+            continue;
+        }
+    }
+    vector<int> res(4) = {max_1, max_1_idx, max_2, max_2_idx};
+}
+```
+
 
 ## 二分搜索 {#二分搜索}
 
 
+
+> 别跟老子说什么堆、滑动窗口、单调队列
+> 数组中搜索老子就是二分
+> 先排序再二分，左右横竖 nlogn
+> 管他找什么数的题目，二分就完事了
 
 
 ### 基础算法 {#基础算法}
@@ -30,6 +67,9 @@ katex = true
 一个最简单的实现如下：
 
 ```cpp
+// [l, r]
+// 如果存在则返回下标
+// 如果不存在则返回 -1
 int search(vector<int>& nums, int target) {
     int left = 0, right = nums.size() - 1;
     while(left <= right){
@@ -47,12 +87,9 @@ int search(vector<int>& nums, int target) {
 }
 ```
 
-这个是 leetcode 的样例代码，我更喜欢左闭右开的写法：
+这个是 leetcode 的样例代码，我更喜欢左闭右开的写法（不要记住这个！很容易写出错误！）
 
 ```cpp
-// [l, r)
-// 如果存在则返回下标
-// 如果不存在则返回 -1
 int bsearch(vector<int>& a, int num) {
     int l = 0, r = a.size();
     int mid = (l + r) / 2;
@@ -69,8 +106,6 @@ int bsearch(vector<int>& a, int num) {
     return -1;
 }
 ```
-
-不过左闭右开的写法很容易写出错误出来，还是老老实实按照样例程序记忆吧。
 
 
 ### 若干特例 {#若干特例}
@@ -953,7 +988,7 @@ int main() {
 ### 列表的两个两个走（奇偶链表） {#列表的两个两个走-奇偶链表}
 
 
-### 数组的二分 {#数组的二分}
+### <span class="org-todo todo TODO">TODO</span> 数组的二分 {#数组的二分}
 
 为了让大家不再害怕，我们就把二分可能产生的下标情况都列出来。
 
@@ -1167,3 +1202,293 @@ public:
     }
 };
 ```
+
+
+## 广度优先搜索 {#广度优先搜索}
+
+
+
+> Too Much Water!
+
+我记得自己初中的时候学习计算机竞赛的时候，最喜欢的题目就是广度优先搜索。因为当时的我非常讨厌递归（就像我现在打麻将讨厌坎张一样），每次做递归的题目时都非常头大，并且想到经常导致的 stack overflow，相对来说更加朴素无华的广度优先算法就显得如此的和蔼可亲。
+
+从各种角度来讲，广度优先搜索都是非常简单的算法。它的结构简单，需要的数据结构也不复杂，优美的递归配上队列操作让它的美感油然而生。
+
+广度优先算法只需要一个普通的例子就可以讲清楚。我们选择“迷宫中最近的出口”来做例子。
+
+
+### 例 1：迷宫中最近的出口 {#例-1-迷宫中最近的出口}
+
+<https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/solutions/869920/mi-gong-zhong-chi-ru-kou-zui-jin-de-chu-0ued5/?envType=study-plan-v2&envId=leetcode-75>
+
+这道题目是广搜的基础题。从这里可以看到广搜的若干要素。相关的介绍已经写到注释里了。不过有一个值得思考的点：为什么我们只需要遍历一次就可以知道距离最近的出口的距离呢？
+
+这就涉及到广度优先算法的一个重要的特性：它永远会先遍历 `step ==== 1` 的节点，然后再去遍历所有 `step == 2` 的节点。只要不走回头路，那么距离起点较近的路径已经可以优先被遍历到，因为不存在绕路并且让路径距离减少的方法（如果有的话使用广搜就是不行的）。
+
+```cpp
+class Solution {
+    int n, m;
+    int ex, ey; // entrance 的坐标
+    bool is_in_maze(int x, int y) {
+        return x >= 0 && x < n && y >= 0 && y < m;
+    }
+    bool is_boundary(int x, int y) {
+        return !(x == ex && y == ey) && (x == 0 || x == n - 1 || y == 0 || y == m - 1);
+    }
+    struct Cord {
+        int x, y;
+        int step = 0;
+        Cord(int x = 0, int y = 0, int step = 0) {
+            this->x = x;
+            this->y = y;
+            this->step = step;
+        }
+    };
+public:
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        // 从自己的格子往外走，每走一步就标记下一个格子的数字是当前格子 + 1 或者上面的最小值（除了 -1 以外）
+        // 如果走到的格子是边界，那么就和 res 比大小
+        n = maze.size();
+        m = maze[0].size();
+        ex = entrance[0];
+        ey = entrance[1];
+        const int dX[4] = {-1, 0, 1, 0}; // 在走格子的时候，这两个数组非常有用。它们代表横纵坐标的变化
+        const int dY[4] = {0, 1, 0, -1};
+        queue<Cord> q; // !这个队列是广搜的核心。不能用栈，因为我们需要先进先出
+        q.push(Cord(ex, ey, 0)); // 第一个 push 是必要的，你需要把起点放进去
+        maze[ex][ey] = '+'; // 这个标记的动作会根据实现的方法有所差异，可以参考“算法核心”部分
+        Cord curr, next; // 我喜欢在外面定义，这样会更快点
+        int res = -1;
+        while(q.size()) {
+            // 1. 获得要 visit 的节点然后 pop
+            curr = q.front();
+            q.pop();
+            next.step = curr.step + 1;
+            if(is_boundary(curr.x, curr.y)) {
+                res = res == -1 ? curr.step : min(res, curr.step);
+            }
+            // 2. 往四个方向走
+            for(int i = 0;i < 4; ++i) {
+                // 3. 计算下一步的坐标
+                next.x = curr.x + dX[i];
+                next.y = curr.y + dY[i];
+                // 4. 判断坐标能不能走
+                if(is_in_maze(next.x, next.y) && maze[next.x][next.y] == '.') {
+                    // 一般来说，广搜都需要在 push 这个动作完成的时候直接标记当前块不可访问
+                    // 因为这可以避免后面的重复遍历（除非有必要这么做）
+                    maze[next.x][next.y] = '+';
+                    q.push(next);
+                }
+            }
+        }
+
+        return res;
+    }
+};
+```
+
+
+### 例2：岛屿的最大面积 {#例2-岛屿的最大面积}
+
+<https://leetcode.cn/problems/ZL6zAn/description/>
+
+岛屿的最大面积也是基础题目，只不过思路可能会稍微复杂一点。
+
+> _\*朴素的想法就是整个地图都遍历一遍
+>   如果遇到水就跳过（标记为 -1）
+>   如果遇到岛就从岛的节点开始广搜，得到面积，求面积最大值即可\\
+> \*_
+> \#define is_in_map(x, y) (x &gt;= 0 &amp;&amp; x &lt; n &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; m)
+> \#define is_island(x) (x == 1)
+> class Solution {
+>     const int dX[4] = {-1, 0, 1, 0};
+>     const int dY[4] = {0, 1, 0, -1};
+>     int n, m;
+>     // 从给定的“岛”的节点开始广搜，返回面积，并且把岛屿填平
+>     int maxAreaOfSingleIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid, int x, int y) {
+>         if(!is_island(grid[x][y])) return 0;
+>         queue&lt;tuple&lt;int, int&gt;&gt; q;
+>         q.emplace(x, y);
+>         int area = 0;
+>         grid[x][y] = 0;
+>         int cx, cy, nx, ny;
+>         while(q.size()) {
+>             auto [cx, cy] = q.front();
+>             q.pop();
+>             area++;
+>             for(int i = 0;i &lt; 4; ++i) {
+>                 nx = cx + dX[i];
+>                 ny = cy + dY[i];
+>                 if(is_in_map(nx, ny) &amp;&amp; is_island(grid[nx][ny])) {
+>                     q.emplace(nx, ny);
+>                     grid[nx][ny] = 0;
+>                 }
+>             }
+>         }
+>         return area;
+>     }
+> public:
+>     int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+>         n = grid.size();
+>         m = grid[0].size();
+>         int res = 0;
+>         for(int i = 0;i &lt; n; ++i) {
+>             for(int j = 0;j &lt; m; ++j) {
+>                 if(is_island(grid[i][j])) {
+>                     res = max(res, maxAreaOfSingleIsland(grid, i, j));
+>                 }
+>             }
+>         }
+>         return res;
+>     }
+> };
+
+现在问题来了：我们有没有一种写法可以保证每个地块只被访问一次，同时得到答案的方法呢？
+
+我给的答案是两次广搜。一次是对水的广搜，一次是对岛的广搜。但是这会引发一个严重的问题：如果岛恰好把水分成两个部分了该怎么办？答案是在遍历水的时候，如果下一个节点是岛，那么强制让这个节点加入到队列中。这么做的理由是，因为岛的四周一定是水，那么将所有岛最外面一圈都从岛变成水，那么所有的水一定是四向联通的。就不会引起问题了
+
+```txt
+之前的状态
+111111
+001111
+001111
+110000
+111111
+111111
+
+
+之后的状态
+011111
+000111
+000111
+000000
+110000
+111111
+```
+
+```cpp
+/*朴素的想法就是整个地图都遍历一遍
+  如果遇到水就跳过（标记为 -1）
+  如果遇到岛就从岛的节点开始广搜，得到面积，求面积最大值即可\
+*/
+class Solution {
+    const int dX[4] = {-1, 0, 1, 0};
+    const int dY[4] = {0, 1, 0, -1};
+    int n, m;
+    bool is_in_map(int x, int y) {
+        return x >= 0 && x < n && y >= 0 && y < m;
+    }
+    bool is_island(int i) {
+        return i == 1;
+    }
+    // 从给定的“岛”的节点开始广搜，返回面积，并且把岛屿填平
+    int maxAreaOfSingleIsland(vector<vector<int>>& grid, int x, int y) {
+        if(!is_island(grid[x][y])) return 0;
+        queue<tuple<int, int>> q;
+        q.emplace(x, y);
+        int area = 0;
+        grid[x][y] = 0;
+        int cx, cy, nx, ny;
+        while(q.size()) {
+            auto [cx, cy] = q.front();
+            q.pop();
+            area++;
+            for(int i = 0;i < 4; ++i) {
+                nx = cx + dX[i];
+                ny = cy + dY[i];
+                if(is_in_map(nx, ny) && is_island(grid[nx][ny])) {
+                    q.emplace(nx, ny);
+                    grid[nx][ny] = 0;
+                }
+            }
+        }
+        return area;
+    }
+public:
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        n = grid.size();
+        m = grid[0].size();
+        queue<tuple<int, int>> q;
+        q.emplace(0, 0);
+        int cx = 0, cy = 0, nx, ny;
+        int res = maxAreaOfSingleIsland(grid, cx, cy);
+        grid[cx][cy] = -1;
+        while(q.size()) {
+            auto [cx, cy] = q.front();
+            q.pop();
+            for(int i = 0;i < 4; ++i) {
+                nx = cx + dX[i];
+                ny = cy + dY[i];
+                if(is_in_map(nx, ny) && grid[nx][ny] >= 0) {
+                    if(is_island(grid[nx][ny])) {
+                        res = max(res, maxAreaOfSingleIsland(grid, nx, ny));
+                    }
+                    q.emplace(nx, ny);
+                    grid[nx][ny] = -1;
+                }
+            }
+        }
+        return res;
+    }
+};
+```
+
+
+### 算法核心 {#算法核心}
+
+这种和走地图有关的广搜基本上只有四个核心：
+
+1.  一个队列（一定要是队列，因为你必须保证步数少的节点被优先遍历到）
+2.  一个每次只看队头，并且往队尾塞东西的 while
+3.  一个往四个方向走的数组
+4.  一个判断有没有出界的函数
+
+基本上写完上面的这些东西之后广搜就已经完成了。
+
+还有若干注意事项：
+
+1.  你需要对自己应该什么时候修改当前节点的值非常清楚。如果你打算在 visit 节点的时候修改，那么就必须判断当前节点的类型。如果打算在计算 next 的时候修改，那么就需要提前对当前节点进行处理
+
+    第一种写法是这样：
+    ```cpp
+    #define is_in_grid(x, y) (x >= 0 && x < n && y >= 0 && y < m)
+    #define is_not_none(x, y) (grid[x][y] > 0)
+    while(q.size()) {
+        auto [cx, cy] = q.front();
+        q.pop();
+        // 在这里检查是否需要 visit，如果不合法直接丢弃
+        // 这会导致最大 O(n) 的额外时间空间开销
+        if(!(is_in_map(cx, cy) && is_not_none(cx, cy))) {
+            continue;
+        }
+        for(int i = 0; i < 4; ++i) {
+            nx = cx + dX[i];
+            ny = cy + dY[i];
+            q.emplace(nx, ny); // 交给之后再处理，有一点像递归的写法
+        }
+    }
+    ```
+    第二种写法是这样：
+    ```cpp
+    #define is_in_grid(x, y) (x >= 0 && x < n && y >= 0 && y < m)
+    #define is_not_none(x, y) (grid[x][y] > 0)
+    while(q.size()) {
+        auto [cx, cy] = q.front();
+        q.pop();
+        // 认为数组中所有的东西都是合法的，直接 visit
+        for(int i = 0; i < 4; ++i) {
+            nx = cx + dX[i];
+            ny = cy + dY[i];
+            if(is_in_map(cx, cy) && is_not_none(cx, cy)) {
+                q.emplace(nx, ny); // 保证数组中的元素一定是合法的元素
+                // 这种写法可能会导致额外的思考量，因为数组中的合法元素可能和想象中不同
+                // 就像我在例2 的写法中有一个必须添加的岛屿，否则遍历会终止
+            }
+        }
+    }
+    ```
+
+2.  要明白你到底要求什么东西，需要储存每一步中的什么变量。然后把这些东西储存下来。这涉及到队列里要用什么储存
+
+
+## <span class="org-todo todo TODO">TODO</span> 深度优先搜索 {#深度优先搜索}
