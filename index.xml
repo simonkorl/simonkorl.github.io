@@ -179,12 +179,51 @@
 &lt;p>学校里个个都是人才，说话也好听，我超喜欢在里面的。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="数组">数组&lt;/h2>
+&lt;blockquote>
+&lt;p>数组，为什么是神？
+在回答这个问题之前，我们必须要解释清楚，神和其他的数据结构都有什么区别。
+首先是犯下傲慢之罪的栈和队列。只是在数组的上增加了一些小创新，就妄图宣称自己是全新的数据结构。数组念在其本是同根生的份上，没有多加追究。允许它们发扬光大是神最大的慈悲。
+其次是犯下懒惰之罪的队列。除了进出 O(1) 开销竟然所有操作都是 O(n) 代价。如同只会吃喝拉撒却一点活不干废物一样。这样的数据结构终将受到神的惩罚。
+再次是犯下嫉妒之罪的二叉树和堆。明明是平衡二叉树（AST）的退化，但是因为嫉妒数组的空间开销，偷去了数组的格式，储存着树状的数据，美名其曰新的数据结构。这样的数据结构必将被神绳之以法。
+最后是犯下愤怒之罪的哈希表。为了追求极致的快速访问失去了理性，背叛了数组的简单优雅，不仅试图往一个下标里塞进多个元素，连键值和下标都已经不对应了。这种数据结构已经被神开除了数组籍，被隔壁的 map 收留，成为了 unordered_map。
+神是宽容的，也是慈悲的。
+纵使树的各种不同分支不断发展壮大，纵使各类新型的编程语言支持的基本容器都增加了键值对，神也不纠不缠。
+神是万物的起源，是众生的归宿。
+组门！&lt;/p>
+&lt;/blockquote>
 &lt;h3 id="求数组中最大的前两个数以及其对应的下标">求数组中最大的前两个数以及其对应的下标&lt;/h3>
 &lt;p>只需要 4 个变量即可做到&lt;/p>
-&lt;h2 id="二分搜索">二分搜索&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> max2(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> max_1 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, max_1_idx &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> max_2 &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, max_2_idx &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i &lt;span style="color:#f92672">&amp;lt;&lt;/span> nums.size(); &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(nums[i] &lt;span style="color:#f92672">&amp;gt;&lt;/span> max_1) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_2 &lt;span style="color:#f92672">=&lt;/span> max_1;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_2_idx &lt;span style="color:#f92672">=&lt;/span> max_1_idx;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_1 &lt;span style="color:#f92672">=&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_1_idx &lt;span style="color:#f92672">=&lt;/span> i;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span>(nums[i] &lt;span style="color:#f92672">&amp;gt;&lt;/span> max_2) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_2 &lt;span style="color:#f92672">=&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_2_idx &lt;span style="color:#f92672">=&lt;/span> i;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">continue&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> res(&lt;span style="color:#ae81ff">4&lt;/span>) &lt;span style="color:#f92672">=&lt;/span> {max_1, max_1_idx, max_2, max_2_idx};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="二分搜索">二分搜索&lt;/h2>
+&lt;blockquote>
+&lt;p>别跟老子说什么堆、滑动窗口、单调队列
+数组中搜索老子就是二分
+先排序再二分，左右横竖 nlogn
+管他找什么数的题目，二分就完事了&lt;/p>
+&lt;/blockquote>
 &lt;h3 id="基础算法">基础算法&lt;/h3>
 &lt;p>一个最简单的实现如下：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">search&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// [l, r]
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果存在则返回下标
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果不存在则返回 -1
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">search&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> target) {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, right &lt;span style="color:#f92672">=&lt;/span> nums.size() &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(left &lt;span style="color:#f92672">&amp;lt;=&lt;/span> right){
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> (right &lt;span style="color:#f92672">-&lt;/span> left) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">+&lt;/span> left;
@@ -199,11 +238,8 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个是 leetcode 的样例代码，我更喜欢左闭右开的写法：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// [l, r)
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果存在则返回下标
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果不存在则返回 -1
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">bsearch&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> a, &lt;span style="color:#66d9ef">int&lt;/span> num) {
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这个是 leetcode 的样例代码，我更喜欢左闭右开的写法（不要记住这个！很容易写出错误！）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">bsearch&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> a, &lt;span style="color:#66d9ef">int&lt;/span> num) {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> l &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, r &lt;span style="color:#f92672">=&lt;/span> a.size();
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> (l &lt;span style="color:#f92672">+&lt;/span> r) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(l &lt;span style="color:#f92672">&amp;lt;&lt;/span> r) {
@@ -218,8 +254,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不过左闭右开的写法很容易写出错误出来，还是老老实实按照样例程序记忆吧。&lt;/p>
-&lt;h3 id="若干特例">若干特例&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="若干特例">若干特例&lt;/h3>
 &lt;h4 id="不超过-不小于">不超过、不小于&lt;/h4>
 &lt;p>有两个非常经典的问题：&lt;/p>
 &lt;ol>
@@ -880,7 +915,7 @@
 &lt;h2 id="迭代遍历">迭代遍历&lt;/h2>
 &lt;p>您还在为遍历列表是空指针而痛苦吗，您还在为数组下标越界而苦恼吗，您还在为树的遍历不会而头痛吗？来到这里，我们都会一口气解决它们。&lt;/p>
 &lt;h3 id="列表的两个两个走-奇偶链表">列表的两个两个走（奇偶链表）&lt;/h3>
-&lt;h3 id="数组的二分">数组的二分&lt;/h3>
+&lt;h3 id="数组的二分">&lt;!-- raw HTML omitted -->TODO&lt;!-- raw HTML omitted --> 数组的二分&lt;/h3>
 &lt;p>为了让大家不再害怕，我们就把二分可能产生的下标情况都列出来。&lt;/p>
 &lt;h2 id="递归">递归&lt;/h2>
 &lt;blockquote>
@@ -1031,4 +1066,261 @@ r 1 1 0 1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> max_window;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Hello World!</title><link>http://localhost:1313/post/helloworld/</link><pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/helloworld/</guid><description>&lt;p>This is a hello world from hugo !&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="广度优先搜索">广度优先搜索&lt;/h2>
+&lt;blockquote>
+&lt;p>Too Much Water!&lt;/p>
+&lt;/blockquote>
+&lt;p>我记得自己初中的时候学习计算机竞赛的时候，最喜欢的题目就是广度优先搜索。因为当时的我非常讨厌递归（就像我现在打麻将讨厌坎张一样），每次做递归的题目时都非常头大，并且想到经常导致的 stack overflow，相对来说更加朴素无华的广度优先算法就显得如此的和蔼可亲。&lt;/p>
+&lt;p>从各种角度来讲，广度优先搜索都是非常简单的算法。它的结构简单，需要的数据结构也不复杂，优美的递归配上队列操作让它的美感油然而生。&lt;/p>
+&lt;p>广度优先算法只需要一个普通的例子就可以讲清楚。我们选择“迷宫中最近的出口”来做例子。&lt;/p>
+&lt;h3 id="例-1-迷宫中最近的出口">例 1：迷宫中最近的出口&lt;/h3>
+&lt;p>&lt;a href="https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/solutions/869920/mi-gong-zhong-chi-ru-kou-zui-jin-de-chu-0ued5/?envType=study-plan-v2&amp;amp;envId=leetcode-75">https://leetcode.cn/problems/nearest-exit-from-entrance-in-maze/solutions/869920/mi-gong-zhong-chi-ru-kou-zui-jin-de-chu-0ued5/?envType=study-plan-v2&amp;amp;envId=leetcode-75&lt;/a>&lt;/p>
+&lt;p>这道题目是广搜的基础题。从这里可以看到广搜的若干要素。相关的介绍已经写到注释里了。不过有一个值得思考的点：为什么我们只需要遍历一次就可以知道距离最近的出口的距离呢？&lt;/p>
+&lt;p>这就涉及到广度优先算法的一个重要的特性：它永远会先遍历 &lt;code>step ==== 1&lt;/code> 的节点，然后再去遍历所有 &lt;code>step == 2&lt;/code> 的节点。只要不走回头路，那么距离起点较近的路径已经可以优先被遍历到，因为不存在绕路并且让路径距离减少的方法（如果有的话使用广搜就是不行的）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> n, m;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> ex, ey; &lt;span style="color:#75715e">// entrance 的坐标
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_in_maze&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> x, &lt;span style="color:#66d9ef">int&lt;/span> y) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> x &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> x &lt;span style="color:#f92672">&amp;lt;&lt;/span> n &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> y &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> y &lt;span style="color:#f92672">&amp;lt;&lt;/span> m;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_boundary&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> x, &lt;span style="color:#66d9ef">int&lt;/span> y) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#f92672">!&lt;/span>(x &lt;span style="color:#f92672">==&lt;/span> ex &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> y &lt;span style="color:#f92672">==&lt;/span> ey) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> (x &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">||&lt;/span> x &lt;span style="color:#f92672">==&lt;/span> n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">||&lt;/span> y &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">||&lt;/span> y &lt;span style="color:#f92672">==&lt;/span> m &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">Cord&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> x, y;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> step &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Cord(&lt;span style="color:#66d9ef">int&lt;/span> x &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span> y &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span> step &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">-&amp;gt;&lt;/span>x &lt;span style="color:#f92672">=&lt;/span> x;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">-&amp;gt;&lt;/span>y &lt;span style="color:#f92672">=&lt;/span> y;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>&lt;span style="color:#f92672">-&amp;gt;&lt;/span>step &lt;span style="color:#f92672">=&lt;/span> step;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> nearestExit(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">char&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> maze, vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> entrance) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 从自己的格子往外走，每走一步就标记下一个格子的数字是当前格子 + 1 或者上面的最小值（除了 -1 以外）
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 如果走到的格子是边界，那么就和 res 比大小
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> n &lt;span style="color:#f92672">=&lt;/span> maze.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> maze[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ex &lt;span style="color:#f92672">=&lt;/span> entrance[&lt;span style="color:#ae81ff">0&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ey &lt;span style="color:#f92672">=&lt;/span> entrance[&lt;span style="color:#ae81ff">1&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> dX[&lt;span style="color:#ae81ff">4&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>}; &lt;span style="color:#75715e">// 在走格子的时候，这两个数组非常有用。它们代表横纵坐标的变化
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> dY[&lt;span style="color:#ae81ff">4&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> queue&lt;span style="color:#f92672">&amp;lt;&lt;/span>Cord&lt;span style="color:#f92672">&amp;gt;&lt;/span> q; &lt;span style="color:#75715e">// !这个队列是广搜的核心。不能用栈，因为我们需要先进先出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> q.push(Cord(ex, ey, &lt;span style="color:#ae81ff">0&lt;/span>)); &lt;span style="color:#75715e">// 第一个 push 是必要的，你需要把起点放进去
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> maze[ex][ey] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;+&amp;#39;&lt;/span>; &lt;span style="color:#75715e">// 这个标记的动作会根据实现的方法有所差异，可以参考“算法核心”部分
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> Cord curr, next; &lt;span style="color:#75715e">// 我喜欢在外面定义，这样会更快点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> res &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(q.size()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 1. 获得要 visit 的节点然后 pop
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> curr &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> next.step &lt;span style="color:#f92672">=&lt;/span> curr.step &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(is_boundary(curr.x, curr.y)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> res &lt;span style="color:#f92672">=&lt;/span> res &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span> &lt;span style="color:#f92672">?&lt;/span> curr.step : min(res, curr.step);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 2. 往四个方向走
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>; &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 3. 计算下一步的坐标
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> next.x &lt;span style="color:#f92672">=&lt;/span> curr.x &lt;span style="color:#f92672">+&lt;/span> dX[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> next.y &lt;span style="color:#f92672">=&lt;/span> curr.y &lt;span style="color:#f92672">+&lt;/span> dY[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 4. 判断坐标能不能走
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span>(is_in_maze(next.x, next.y) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> maze[next.x][next.y] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;.&amp;#39;&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 一般来说，广搜都需要在 push 这个动作完成的时候直接标记当前块不可访问
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 因为这可以避免后面的重复遍历（除非有必要这么做）
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> maze[next.x][next.y] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;+&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(next);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> res;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="例2-岛屿的最大面积">例2：岛屿的最大面积&lt;/h3>
+&lt;p>&lt;a href="https://leetcode.cn/problems/ZL6zAn/description/">https://leetcode.cn/problems/ZL6zAn/description/&lt;/a>&lt;/p>
+&lt;p>岛屿的最大面积也是基础题目，只不过思路可能会稍微复杂一点。&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;em>*朴素的想法就是整个地图都遍历一遍
+如果遇到水就跳过（标记为 -1）
+如果遇到岛就从岛的节点开始广搜，得到面积，求面积最大值即可\
+*&lt;/em>
+#define is_in_map(x, y) (x &amp;gt;= 0 &amp;amp;&amp;amp; x &amp;lt; n &amp;amp;&amp;amp; y &amp;gt;= 0 &amp;amp;&amp;amp; y &amp;lt; m)
+#define is_island(x) (x == 1)
+class Solution {
+const int dX[4] = {-1, 0, 1, 0};
+const int dY[4] = {0, 1, 0, -1};
+int n, m;
+// 从给定的“岛”的节点开始广搜，返回面积，并且把岛屿填平
+int maxAreaOfSingleIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid, int x, int y) {
+if(!is_island(grid[x][y])) return 0;
+queue&amp;lt;tuple&amp;lt;int, int&amp;gt;&amp;gt; q;
+q.emplace(x, y);
+int area = 0;
+grid[x][y] = 0;
+int cx, cy, nx, ny;
+while(q.size()) {
+auto [cx, cy] = q.front();
+q.pop();
+area++;
+for(int i = 0;i &amp;lt; 4; ++i) {
+nx = cx + dX[i];
+ny = cy + dY[i];
+if(is_in_map(nx, ny) &amp;amp;&amp;amp; is_island(grid[nx][ny])) {
+q.emplace(nx, ny);
+grid[nx][ny] = 0;
+}
+}
+}
+return area;
+}
+public:
+int maxAreaOfIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) {
+n = grid.size();
+m = grid[0].size();
+int res = 0;
+for(int i = 0;i &amp;lt; n; ++i) {
+for(int j = 0;j &amp;lt; m; ++j) {
+if(is_island(grid[i][j])) {
+res = max(res, maxAreaOfSingleIsland(grid, i, j));
+}
+}
+}
+return res;
+}
+};&lt;/p>
+&lt;/blockquote>
+&lt;p>现在问题来了：我们有没有一种写法可以保证每个地块只被访问一次，同时得到答案的方法呢？&lt;/p>
+&lt;p>我给的答案是两次广搜。一次是对水的广搜，一次是对岛的广搜。但是这会引发一个严重的问题：如果岛恰好把水分成两个部分了该怎么办？答案是在遍历水的时候，如果下一个节点是岛，那么强制让这个节点加入到队列中。这么做的理由是，因为岛的四周一定是水，那么将所有岛最外面一圈都从岛变成水，那么所有的水一定是四向联通的。就不会引起问题了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>之前的状态
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>111111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>001111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>001111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>110000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>111111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>111111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>之后的状态
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>011111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>000111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>000111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>000000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>110000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>111111
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*朴素的想法就是整个地图都遍历一遍
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> 如果遇到水就跳过（标记为 -1）
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> 如果遇到岛就从岛的节点开始广搜，得到面积，求面积最大值即可\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> dX[&lt;span style="color:#ae81ff">4&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> dY[&lt;span style="color:#ae81ff">4&lt;/span>] &lt;span style="color:#f92672">=&lt;/span> {&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> n, m;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_in_map&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> x, &lt;span style="color:#66d9ef">int&lt;/span> y) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> x &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> x &lt;span style="color:#f92672">&amp;lt;&lt;/span> n &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> y &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> y &lt;span style="color:#f92672">&amp;lt;&lt;/span> m;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">is_island&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> i &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 从给定的“岛”的节点开始广搜，返回面积，并且把岛屿填平
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">maxAreaOfSingleIsland&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> grid, &lt;span style="color:#66d9ef">int&lt;/span> x, &lt;span style="color:#66d9ef">int&lt;/span> y) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>is_island(grid[x][y])) &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> queue&lt;span style="color:#f92672">&amp;lt;&lt;/span>tuple&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> q;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(x, y);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> area &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> grid[x][y] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> cx, cy, nx, ny;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(q.size()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">auto&lt;/span> [cx, cy] &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> area&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>; &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nx &lt;span style="color:#f92672">=&lt;/span> cx &lt;span style="color:#f92672">+&lt;/span> dX[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ny &lt;span style="color:#f92672">=&lt;/span> cy &lt;span style="color:#f92672">+&lt;/span> dY[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(is_in_map(nx, ny) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> is_island(grid[nx][ny])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(nx, ny);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> grid[nx][ny] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> area;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxAreaOfIsland(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> grid) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> grid.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> grid[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> queue&lt;span style="color:#f92672">&amp;lt;&lt;/span>tuple&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> q;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(&lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> cx &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, cy &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, nx, ny;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> res &lt;span style="color:#f92672">=&lt;/span> maxAreaOfSingleIsland(grid, cx, cy);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> grid[cx][cy] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span>(q.size()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">auto&lt;/span> [cx, cy] &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;i &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>; &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nx &lt;span style="color:#f92672">=&lt;/span> cx &lt;span style="color:#f92672">+&lt;/span> dX[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ny &lt;span style="color:#f92672">=&lt;/span> cy &lt;span style="color:#f92672">+&lt;/span> dY[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(is_in_map(nx, ny) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> grid[nx][ny] &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(is_island(grid[nx][ny])) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> res &lt;span style="color:#f92672">=&lt;/span> max(res, maxAreaOfSingleIsland(grid, nx, ny));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(nx, ny);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> grid[nx][ny] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> res;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="算法核心">算法核心&lt;/h3>
+&lt;p>这种和走地图有关的广搜基本上只有四个核心：&lt;/p>
+&lt;ol>
+&lt;li>一个队列（一定要是队列，因为你必须保证步数少的节点被优先遍历到）&lt;/li>
+&lt;li>一个每次只看队头，并且往队尾塞东西的 while&lt;/li>
+&lt;li>一个往四个方向走的数组&lt;/li>
+&lt;li>一个判断有没有出界的函数&lt;/li>
+&lt;/ol>
+&lt;p>基本上写完上面的这些东西之后广搜就已经完成了。&lt;/p>
+&lt;p>还有若干注意事项：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>你需要对自己应该什么时候修改当前节点的值非常清楚。如果你打算在 visit 节点的时候修改，那么就必须判断当前节点的类型。如果打算在计算 next 的时候修改，那么就需要提前对当前节点进行处理&lt;/p>
+&lt;p>第一种写法是这样：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define is_in_grid(x, y) (x &amp;gt;= 0 &amp;amp;&amp;amp; x &amp;lt; n &amp;amp;&amp;amp; y &amp;gt;= 0 &amp;amp;&amp;amp; y &amp;lt; m)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define is_not_none(x, y) (grid[x][y] &amp;gt; 0)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">while&lt;/span>(q.size()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">auto&lt;/span> [cx, cy] &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 在这里检查是否需要 visit，如果不合法直接丢弃
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 这会导致最大 O(n) 的额外时间空间开销
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span>(&lt;span style="color:#f92672">!&lt;/span>(is_in_map(cx, cy) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> is_not_none(cx, cy))) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">continue&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>; &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nx &lt;span style="color:#f92672">=&lt;/span> cx &lt;span style="color:#f92672">+&lt;/span> dX[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ny &lt;span style="color:#f92672">=&lt;/span> cy &lt;span style="color:#f92672">+&lt;/span> dY[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(nx, ny); &lt;span style="color:#75715e">// 交给之后再处理，有一点像递归的写法
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>第二种写法是这样：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-cpp" data-lang="cpp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define is_in_grid(x, y) (x &amp;gt;= 0 &amp;amp;&amp;amp; x &amp;lt; n &amp;amp;&amp;amp; y &amp;gt;= 0 &amp;amp;&amp;amp; y &amp;lt; m)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#define is_not_none(x, y) (grid[x][y] &amp;gt; 0)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">while&lt;/span>(q.size()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">auto&lt;/span> [cx, cy] &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 认为数组中所有的东西都是合法的，直接 visit
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>; &lt;span style="color:#f92672">++&lt;/span>i) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nx &lt;span style="color:#f92672">=&lt;/span> cx &lt;span style="color:#f92672">+&lt;/span> dX[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ny &lt;span style="color:#f92672">=&lt;/span> cy &lt;span style="color:#f92672">+&lt;/span> dY[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span>(is_in_map(cx, cy) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> is_not_none(cx, cy)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.emplace(nx, ny); &lt;span style="color:#75715e">// 保证数组中的元素一定是合法的元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 这种写法可能会导致额外的思考量，因为数组中的合法元素可能和想象中不同
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// 就像我在例2 的写法中有一个必须添加的岛屿，否则遍历会终止
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>要明白你到底要求什么东西，需要储存每一步中的什么变量。然后把这些东西储存下来。这涉及到队列里要用什么储存&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="深度优先搜索">&lt;!-- raw HTML omitted -->TODO&lt;!-- raw HTML omitted --> 深度优先搜索&lt;/h2></description></item><item><title>Hello World!</title><link>http://localhost:1313/post/helloworld/</link><pubDate>Wed, 06 Apr 2022 00:00:00 +0000</pubDate><guid>http://localhost:1313/post/helloworld/</guid><description>&lt;p>This is a hello world from hugo !&lt;/p></description></item></channel></rss>
